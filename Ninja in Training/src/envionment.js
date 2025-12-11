@@ -31,7 +31,7 @@ export function createEnvironment(scene) {
     scene.add(wall3);
     scene.add(wall4);
 
-    let dividerGeom = new T.BoxGeometry(100, 5, 5);
+    let dividerGeom = new T.BoxGeometry(100, 3, 3);
     let dividerMat = new T.MeshStandardMaterial({ color: 'rgba(50, 50, 50, 1)' });
     let divider = new T.Mesh(dividerGeom, dividerMat);
     divider.position.y = 2.5;
