@@ -3,7 +3,7 @@ import { Shuriken } from './shuriken.js';
 import { add } from 'three/tsl';
 
 export class Player {
-    constructor(x=-10, z = 10 ) {
+    constructor(x=0, z = 10 ) {
 
         this.group = new T.Group();
         this.score = 0;
@@ -46,9 +46,7 @@ export class Player {
 
     update() {
 
-        console.log(this.group.getWorldDirection(new T.Vector3()));
-
-        const speed = 0.5;
+        const speed = 0.35;
 
         const direction = this.group.getWorldDirection(new T.Vector3());
         const right = new T.Vector3().crossVectors(direction, new T.Vector3(0, 1, 0));
@@ -64,6 +62,19 @@ export class Player {
         }
         if (this.moves.d) {
             this.group.position.addScaledVector(right, -speed);
+        }
+
+        if (this.group.position.x > 49) {
+            this.group.position.x = 49;
+        }
+        if (this.group.position.x < -49) {
+            this.group.position.x = -49;
+        }
+        if (this.group.position.z < 1) {
+            this.group.position.z = 1;
+        }
+        if (this.group.position.z > 49) {
+            this.group.position.z = 49;
         }
 
     }
