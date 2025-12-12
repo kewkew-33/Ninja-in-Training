@@ -42,6 +42,7 @@ for (let target of targets) {
 function animate() {
 
   //controls.update();
+  player.update();
 
   for (let target of targets) {
       target.update();
