@@ -16,58 +16,40 @@ export class Shuriken {
 
         this.group.position.set(x, y, z);
 
-        this.speed = 1;
-
         this.targets = targets;
 
-        this.curve = null;
+        this.thrown = false;
 
-        this.throwTime = null;
-        this.t = 0;
+        this.lastTime = null;
+        this.velocity = null;
     }
 
     setPosition(x, y, z) {
         this.group.position.set(x, y, z);
     }
 
-    throw(targetX, targetY, targetZ) {
+    throw(direction) {
 
-        let curr = this.group.getWorldPosition(new T.Vector3());
+        this.velocity = direction.clone().multiplyScalar(20);
 
-        targetZ = 50;
-        targetY = targetY - 10;
-
-        let dx = targetX - curr.x;
-        let dy = targetY - curr.y;
-        let dz = targetZ - curr.z;
-
-        let controlX = curr.x + dx / 2;
-        let controlY = curr.y;
-        let controlZ = 30;
-
-        this.curve = new T.QuadraticBezierCurve3(
-            curr,
-            new T.Vector3(controlX, controlY, controlZ),
-            new T.Vector3(targetX, targetY, targetZ)
-        )
-
-        this.throwTime = Date.now();
+        this.thrown = true;
+        this.lastTime = Date.now();
 
     }
 
     update() {
 
-        if (this.curve) {
+        if (this.thrown) {
 
-            this.t = (Date.now() - this.throwTime) / 1000 * this.speed;
+            let delta = Date.now() - this.lastTime;
 
-            if (this.t > 1) {
-                this.t = 1;
-            }
+            this.velocity.y -= 9.81 * (delta / 1000) * 0.7; // gravity effect for arcs
 
-            this.simpleProjectile.position.copy(this.curve.getPoint(this.t));
+            this.group.position.add(this.velocity.clone().multiplyScalar(delta / 500));
 
             this.simpleProjectile.rotation.z += 0.5;
+
+            this.lastTime = Date.now();
         }
     }
 }

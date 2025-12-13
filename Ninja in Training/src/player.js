@@ -1,9 +1,8 @@
 import * as T from 'three';
 import { Shuriken } from './shuriken.js';
-import { add } from 'three/tsl';
 
 export class Player {
-    constructor(x=0, z = 10 ) {
+    constructor(x=0, z = 10, scene ) {
 
         this.group = new T.Group();
         this.score = 0;
@@ -15,9 +14,12 @@ export class Player {
 
         this.group.position.set(x, 0, z);
 
-        this.shuriken = new Shuriken();
+        this.shuriken = new Shuriken(0.2, 4.7, -0.5);
+        this.group.add(this.shuriken.group);
 
         this.moves = {w: false, a: false, s: false, d: false};
+
+        this.shurikenList = [];
 
         addEventListener('keydown', (e) => {
 
@@ -40,6 +42,19 @@ export class Player {
             this.playerCam.rotation.x -= e.movementY * 0.005;
             this.group.rotation.y -= e.movementX * 0.005;
             this.playerCam.rotation.order = "YXZ";
+        });
+
+        addEventListener('click', () => {
+            let throwingShuriken = new Shuriken(0.2, 4.7, -0.5);
+            throwingShuriken.group.position.copy(this.shuriken.group.getWorldPosition(new T.Vector3()));
+
+            let direction = new T.Vector3();
+
+            this.playerCam.getWorldDirection(direction);
+            throwingShuriken.throw(direction);
+
+            this.shurikenList.push(throwingShuriken);
+            scene.add(throwingShuriken.group);
         });
 
     }
@@ -77,6 +92,8 @@ export class Player {
             this.group.position.z = 49;
         }
 
+        for (let shuriken of this.shurikenList) {
+            shuriken.update();
+        }
     }
-
 }
