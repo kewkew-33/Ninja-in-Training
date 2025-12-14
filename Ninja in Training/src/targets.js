@@ -70,11 +70,11 @@ export class spin100 {
             inside2 = false;
         }
 
-        if( inside1) {
+        if( inside1 && this.hit1 === false) {
             return 1;
         }
 
-        if( inside2) {
+        if( inside2 && this.hit2 === false) {
             return 2;
         }
 
@@ -114,6 +114,63 @@ export class spin100 {
                 this.hit2 = false;
                 this.ring2.visible = true;
             }
+        }
+    }
+}
+
+export class Cube500 {
+
+    constructor(x=0, y=0, z=0) {
+
+        this.group = new T.Group();
+
+        const geometry = new T.BoxGeometry(4,4,4);
+        const material = new T.MeshBasicMaterial({ color: 'blue' });
+        const cube = new T.Mesh(geometry, material);
+
+        this.group.add(cube);
+        this.group.position.set(x, y, z);
+
+        this.value = 500;
+
+        this.collected = false;
+
+    }
+
+    checkIntersection(shuriken) {
+
+        let cubePos = this.group.getWorldPosition(new T.Vector3());
+
+        if (shuriken.group.position.x < cubePos.x + 2 &&
+            shuriken.group.position.x > cubePos.x - 2 &&
+            shuriken.group.position.y < cubePos.y + 2 &&
+            shuriken.group.position.y > cubePos.y - 2 &&
+            shuriken.group.position.z < cubePos.z + 2 &&
+            shuriken.group.position.z > cubePos.z - 2) {return 1;}
+        return 0;
+
+    }
+
+    hit( val ) {
+
+        if( !this.collected) {
+
+            addScore(this.value);
+            this.collected = true;
+            this.group.visible = false;
+
+        }
+
+    }
+
+    update() {
+
+        this.group.position.y -= 0.05;
+
+        if (this.group.position.y < -5) {
+            this.group.position.y = 54;
+            this.hit = false;
+            this.group.visible = true;
         }
     }
 }

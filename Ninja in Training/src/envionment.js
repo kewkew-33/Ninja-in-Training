@@ -60,6 +60,12 @@ export function createTargets() {
     let target3 = new TARGETS.spin100(50, 10, -15, 3);
     targets.push(target3);
 
+    let target4 = new TARGETS.Cube500(48, 80, -48);
+    targets.push(target4);
+
+    let target5 = new TARGETS.Cube500(-48, 60, -48);
+    targets.push(target5);
+
     return targets;
 
 }

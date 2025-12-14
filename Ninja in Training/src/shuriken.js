@@ -60,13 +60,6 @@ export class Shuriken {
         for (let target of this.targets) {
             if (target.checkIntersection(this) != 0) {
 
-                if (target.checkIntersection(this) === 1 && target.hit1) {
-                    continue;
-                }
-                if (target.checkIntersection(this) === 2 && target.hit2) {
-                    continue;
-                }
-
                 target.hit(target.checkIntersection(this));
                 this.scene.remove(this.group);
             }
