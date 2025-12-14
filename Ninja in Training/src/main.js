@@ -51,6 +51,7 @@ function animate() {
         localStorage.setItem("ninjaHighScore", player.score);
     }
 
+      renderer.setAnimationLoop( null );
       window.location.href = "index.html";
   }
 

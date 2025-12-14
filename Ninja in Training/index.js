@@ -4,9 +4,8 @@ let highScore = localStorage.getItem("ninjaHighScore") || 0;
 
 document.getElementById("high-score").innerText = "High Score: " + highScore;
 
-startButton.addEventListener("click", () => {
+startButton.addEventListener("mousedown", () => {
 
-    startButton.disabled = true;
     window.location.href = "game.html";
 
 });
