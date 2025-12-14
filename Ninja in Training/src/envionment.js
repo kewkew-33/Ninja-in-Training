@@ -51,13 +51,13 @@ export function createTargets() {
 
     let targets = [];
 
-    let target1 = new TARGETS.spin100(0, 0, -40, 2);
+    let target1 = new TARGETS.spin200(0, 0, -40, 2);
     targets.push(target1);
 
-    let target2 = new TARGETS.spin100(-50, 20, -20, 1);
+    let target2 = new TARGETS.spin200(-50, 20, -20, 1);
     targets.push(target2);
 
-    let target3 = new TARGETS.spin100(50, 10, -15, 3);
+    let target3 = new TARGETS.spin200(50, 10, -15, 3);
     targets.push(target3);
 
     let target4 = new TARGETS.Cube500(48, 80, -48);
@@ -77,6 +77,12 @@ export function createTargets() {
 
     let target9 = new TARGETS.Sphere800(53, 25, -25, 1);
     targets.push(target9);
+
+    let target10 = new TARGETS.Sphere800(50, 2, -47, 2);
+    targets.push(target10);
+
+    let target11 = new TARGETS.TorusKnot15000();
+    targets.push(target11);
 
     return targets;
 

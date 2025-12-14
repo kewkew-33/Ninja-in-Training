@@ -7,7 +7,7 @@ export class Shuriken {
 
         this.group = new T.Group();
 
-        let simpleProjectileGeom = new T.CylinderGeometry(0.1, 0.1, 0.1, 6);
+        let simpleProjectileGeom = new T.CylinderGeometry(0.1, 0.1, 0.05, 6);
         let simpleProjectileMat = new T.MeshStandardMaterial({ color: 'silver' });
         this.simpleProjectile = new T.Mesh(simpleProjectileGeom, simpleProjectileMat);
         this.simpleProjectile.rotation.x = Math.PI / 2;

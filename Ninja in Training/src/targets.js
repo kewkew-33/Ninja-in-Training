@@ -2,7 +2,7 @@ import * as T from 'three';
 import { addScore } from './main.js';
 import { hitMark } from './main.js';
 
-export class spin100 {
+export class spin200 {
     constructor(x=0, y=0, z=0, orientation) {
 
         this.group = new T.Group();
@@ -26,7 +26,7 @@ export class spin100 {
 
         this.speed = 0.005;
 
-        this.value = 100;
+        this.value = 200;
 
         this.hit1 = false;
         this.hit2 = false;
@@ -360,6 +360,119 @@ export class Sphere800 {
                 this.stage = 1;
                 this.previousStage = 2;
                 this.pauseTime = Date.now();
+            }
+        }
+    }
+}
+
+export class TorusKnot15000 {
+
+    constructor() {
+
+        this.group = new T.Group();
+
+        const geometry = new T.TorusKnotGeometry(1, 0.3, 100, 16);
+        const material = new T.MeshBasicMaterial({ color: 'purple' });
+        const torusKnot = new T.Mesh(geometry, material);
+        this.group.add(torusKnot);
+
+        this.value = 15000;
+
+        this.collected = false;
+
+        this.pauseTime = Date.now();
+        this.visibleTime = null;
+
+        this.stage = 1;
+
+    }
+
+    checkIntersection(shuriken) {
+
+        let torusKnotPos = this.group.getWorldPosition(new T.Vector3());
+
+        let distance = shuriken.group.position.distanceTo(torusKnotPos);
+
+        if (distance < 1.25) {return 1;}
+
+        return 0;
+
+    }
+
+    hit( val ) {
+
+        if( !this.collected) {
+            hitMark();
+            addScore(this.value);
+            this.collected = true;
+            this.group.visible = false;
+        }
+
+    }
+
+    update() {
+
+        console.log("x: " + this.group.position.x + " y: " + this.group.position.y + " z: " + this.group.position.z);
+
+        //this.group.rotation.y += 0.01;
+
+        if(this.stage === 1) {
+
+            if (this.visibleTime != null) {
+
+                if(Date.now() - this.visibleTime > 4000) {
+
+                    this.stage = 2;
+                    this.visibleTime = null;
+
+                }
+            }
+
+            else if(Date.now() - this.pauseTime > 10000) {
+
+                if(Math.random() < 0.25) {
+
+                    let x = Math.random() * 100 - 50;
+                    let z = Math.random() * 50 - 50;
+                    let y = 52;
+
+                    this.group.position.set(x, y, z);
+
+                    this.collected = false;
+                    this.group.visible = true;
+
+                    this.stage = 0;
+
+                    this.visibleTime = Date.now();
+
+                }
+
+                this.pauseTime = Date.now();
+
+            }
+        }
+        else if(this.stage === 0) {
+
+            this.group.position.y -= 0.2;
+
+            if(this.group.position.y < 47) {
+
+                this.stage = 1;
+                this.visibleTime = Date.now();
+
+            }
+
+        }
+
+        else if(this.stage === 2) {
+
+            this.group.position.y += 0.2;
+
+            if(this.group.position.y > 52) {
+
+                this.stage = 1;
+                this.pauseTime = Date.now();
+
             }
         }
     }
