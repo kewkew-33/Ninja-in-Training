@@ -21,6 +21,8 @@ export class Player {
 
         this.shurikenList = [];
 
+        this.targets = [];
+
         addEventListener('keydown', (e) => {
 
             if (e.key === 'w') {this.moves.w = true;}
@@ -45,7 +47,7 @@ export class Player {
         });
 
         addEventListener('click', () => {
-            let throwingShuriken = new Shuriken(0.2, 4.7, -0.5);
+            let throwingShuriken = new Shuriken(0.2, 4.7, -0.5, this.targets, scene);
             throwingShuriken.group.position.copy(this.shuriken.group.getWorldPosition(new T.Vector3()));
 
             let direction = new T.Vector3();
@@ -59,9 +61,13 @@ export class Player {
 
     }
 
+    setTargets(targets) {
+        this.targets = targets;
+    }
+
     update() {
 
-        const speed = 0.35;
+        const speed = 0.25;
 
         const direction = this.group.getWorldDirection(new T.Vector3());
         const right = new T.Vector3().crossVectors(direction, new T.Vector3(0, 1, 0));

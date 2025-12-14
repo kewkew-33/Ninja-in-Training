@@ -39,6 +39,8 @@ for (let target of targets) {
     scene.add(target.group);
 }
 
+player.setTargets(targets);
+
 function animate() {
 
   //controls.update();
@@ -60,3 +62,7 @@ window.addEventListener( 'resize', () => {
   renderer.setSize( window.innerWidth, window.innerHeight );
 
 });
+
+export function addScore(points) {
+    player.score += points;
+}

@@ -3,7 +3,7 @@ import * as TARGETS from './targets.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 export class Shuriken {
-    constructor(x=0, y=0, z=0, targets = []) {
+    constructor(x=0, y=0, z=0, targets = [], scene) {
 
         this.group = new T.Group();
 
@@ -22,6 +22,7 @@ export class Shuriken {
 
         this.lastTime = null;
         this.velocity = null;
+        this.scene = scene;
     }
 
     setPosition(x, y, z) {
@@ -45,11 +46,18 @@ export class Shuriken {
 
             this.velocity.y -= 9.81 * (delta / 1000) * 0.7; // gravity effect for arcs
 
-            this.group.position.add(this.velocity.clone().multiplyScalar(delta / 500));
+            this.group.position.add(this.velocity.clone().multiplyScalar(delta / 300));
 
             this.simpleProjectile.rotation.z += 0.5;
 
             this.lastTime = Date.now();
+        }
+
+        for (let target of this.targets) {
+            if (target.checkIntersection(this) != 0) {
+                target.hit(target.checkIntersection(this));
+                this.scene.remove(this.group);
+            }
         }
     }
 }
