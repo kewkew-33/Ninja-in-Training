@@ -66,6 +66,18 @@ export function createTargets() {
     let target5 = new TARGETS.Cube500(-48, 60, -48);
     targets.push(target5);
 
+    let target6 = new TARGETS.Dodec4000(30, 1, -45);
+    targets.push(target6);
+
+    let target7 = new TARGETS.Dodec4000(-30, 1, -45);
+    targets.push(target7);
+
+    let target8 = new TARGETS.Sphere800(-50, 30, -30, 0);
+    targets.push(target8);
+
+    let target9 = new TARGETS.Sphere800(53, 25, -25, 1);
+    targets.push(target9);
+
     return targets;
 
 }

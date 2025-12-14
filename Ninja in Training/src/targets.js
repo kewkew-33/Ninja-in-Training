@@ -178,3 +178,189 @@ export class Cube500 {
         }
     }
 }
+
+export class Dodec4000 {
+
+    constructor(x=0, y=0, z=0) {
+
+        this.group = new T.Group();
+
+        const geometry = new T.DodecahedronGeometry(1);
+        const material = new T.MeshBasicMaterial({ color: 'green' });
+        const tetra = new T.Mesh(geometry, material);
+
+        this.group.add(tetra);
+
+        this.group.position.set(x, y, z);
+
+        this.value = 4000;
+
+        this.collected = false;
+
+        this.previousStage = 0;
+
+        this.stage = 1;
+
+        this.pauseTime = Date.now();
+    }
+
+    checkIntersection(shuriken) {
+
+        let tetraPos = this.group.getWorldPosition(new T.Vector3());
+
+        if (shuriken.group.position.x < tetraPos.x + 0.5 &&
+            shuriken.group.position.x > tetraPos.x - 0.5 &&
+            shuriken.group.position.y < tetraPos.y + 0.5 &&
+            shuriken.group.position.y > tetraPos.y - 0.5 &&
+            shuriken.group.position.z < tetraPos.z + 0.5 &&
+            shuriken.group.position.z > tetraPos.z - 0.5) {return 1;}
+
+        return 0;
+
+    }
+
+    hit( val ) {
+        if( !this.collected) {
+            hitMark();
+            addScore(this.value);
+            this.collected = true;
+            this.group.visible = false;
+        }
+    }
+
+    update() {
+
+        this.group.rotation.y += 0.01;
+
+        if(this.stage === 1) {
+
+            if(Date.now() - this.pauseTime > 7000) {
+
+                if(this.previousStage === 0) {
+
+                    this.stage = 2;
+
+                }
+
+                if(this.previousStage === 2) {
+                    this.stage = 0;
+                }
+
+                this.previousStage = 1;
+            }
+        }
+        else if(this.stage === 2) {
+
+            this.group.position.y -= 0.1;
+
+            if(this.group.position.y < -1.5) {
+
+                this.stage = 1;
+                this.previousStage = 2;
+                this.pauseTime = Date.now();
+                this.collected = false;
+                this.group.visible = true;
+
+            }
+        }
+        else if(this.stage === 0) {
+
+            this.group.position.y += 0.1;
+            if(this.group.position.y > 1.5) {
+                this.stage = 1;
+                this.previousStage = 0;
+                this.pauseTime = Date.now();
+            }
+        }
+    }
+}
+
+export class Sphere800 {
+
+    constructor(x=0, y=0, z=0, stage) {
+
+        this.group = new T.Group();
+
+        const geometry = new T.SphereGeometry(2, 32, 32);
+        const material = new T.MeshBasicMaterial({ color: 'yellow' });
+        const sphere = new T.Mesh(geometry, material);
+
+        this.group.add(sphere);
+
+        this.group.position.set(x, y, z);
+
+        this.value = 800;
+
+        this.collected = false;
+
+        this.stage = stage;
+
+        this.previousStage = 0;
+
+        this.pauseTime = Date.now();
+
+    }
+
+    checkIntersection(shuriken) {
+
+        let spherePos = this.group.getWorldPosition(new T.Vector3());
+
+        let distance = shuriken.group.position.distanceTo(spherePos);
+
+        if (distance < 2.5) {return 1;}
+
+        return 0;
+
+    }
+
+    hit( val ) {
+
+        if( !this.collected) {
+            hitMark();
+            addScore(this.value);
+            this.collected = true;
+            this.group.visible = false;
+        }
+    }
+
+    update() {
+
+        if (this.stage === 0) {
+
+            this.group.position.x += 0.15;
+            if (this.group.position.x > 53) {
+                this.stage = 1;
+                this.previousStage = 0;
+            }
+
+        }
+        else if (this.stage === 1) {
+
+            if(Date.now() - this.pauseTime > 3000) {
+
+                if(this.previousStage === 0) {
+
+                    this.stage = 2;
+
+                }
+                else if (this.previousStage === 2) {
+
+                    this.stage = 0;
+
+                }
+
+                this.previousStage = 1;
+
+            }
+        }
+        else if (this.stage === 2) {
+
+            this.group.position.x -= 0.15;
+            if (this.group.position.x < -53) {
+                this.stage = 1;
+                this.previousStage = 2;
+                this.pauseTime = Date.now();
+            }
+        }
+    }
+}
