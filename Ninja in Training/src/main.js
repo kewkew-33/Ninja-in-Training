@@ -1,6 +1,6 @@
 import './style.css';
 import * as THREE from 'three';
-import { createEnvironment } from './envionment';
+import { createEnvironment, createTargets } from './envionment';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
@@ -13,7 +13,10 @@ let player = new Player(0, 10, scene);
 const camera = player.playerCam;
 scene.add(player.group);
 
-let targets = [];
+let targets = createTargets();
+
+let time = 60;
+let startTime = Date.now();
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -28,13 +31,6 @@ renderer.domElement.onclick = () => {
 
 }
 
-
-//camera.position.z = 5;
-//const controls = new OrbitControls( camera, renderer.domElement );
-
-let target1 = new TARGETS.spin100(0, 0, -20);
-targets.push(target1);
-
 for (let target of targets) {
     scene.add(target.group);
 }
@@ -43,7 +39,17 @@ player.setTargets(targets);
 
 function animate() {
 
-  //controls.update();
+  time = 60 - Math.floor((Date.now() - startTime) / 1000);
+
+  if (time <= 0) {
+      //alert("Game Over! Your final score is: " + player.score);
+      //window.location.reload();
+  }
+
+  document.getElementById("timer").innerText = "Time: " + time;
+
+  document.getElementById("score-counter").innerText = "Score: " + player.score;
+
   player.update();
 
   for (let target of targets) {

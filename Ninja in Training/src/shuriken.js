@@ -40,6 +40,10 @@ export class Shuriken {
 
     update() {
 
+        if(this.group.position.y < 0 || this.group.position.x > 50 || this.group.position.x < -50 || this.group.position.z > 50 || this.group.position.z < -50) {
+            this.scene.remove(this.group);
+        }
+
         if (this.thrown) {
 
             let delta = Date.now() - this.lastTime;
@@ -55,6 +59,14 @@ export class Shuriken {
 
         for (let target of this.targets) {
             if (target.checkIntersection(this) != 0) {
+
+                if (target.checkIntersection(this) === 1 && target.hit1) {
+                    continue;
+                }
+                if (target.checkIntersection(this) === 2 && target.hit2) {
+                    continue;
+                }
+
                 target.hit(target.checkIntersection(this));
                 this.scene.remove(this.group);
             }

@@ -1,3 +1,19 @@
 body {
   margin: 0;
 }
+#score-counter {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  color: rgb(255, 0, 0);
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+}
+#timer {
+  position: absolute;
+  top: 2%;
+  left: 5%;
+  color: rgb(255, 0, 0);
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+}

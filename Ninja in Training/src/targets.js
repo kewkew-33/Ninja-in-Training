@@ -2,7 +2,7 @@ import * as T from 'three';
 import { addScore } from './main.js';
 
 export class spin100 {
-    constructor(x=0, y=0, z=0) {
+    constructor(x=0, y=0, z=0, orientation) {
 
         this.group = new T.Group();
 
@@ -29,6 +29,9 @@ export class spin100 {
 
         this.hit1 = false;
         this.hit2 = false;
+
+        this.orientation = orientation;
+
     }
 
     checkIntersection(shuriken) {
@@ -94,16 +97,20 @@ export class spin100 {
     }
 
     update() {
-        console.log(this.ring1.position.y);
+
         this.group.rotation.z += this.speed;
         if (this.hit1) {
-            if (this.ring1.getWorldPosition(new T.Vector3()).y < -3) {
+            if ((this.ring1.getWorldPosition(new T.Vector3()).y < -3 && this.orientation === 2) ||
+                (this.ring1.getWorldPosition(new T.Vector3()).x < -53 && this.orientation === 1) || 
+                (this.ring1.getWorldPosition(new T.Vector3()).x > 53 && this.orientation === 3)) {
                 this.hit1 = false;
                 this.ring1.visible = true;
             }
         }
         if (this.hit2) {
-            if (this.ring2.getWorldPosition(new T.Vector3()).y < -3) {
+            if ((this.ring2.getWorldPosition(new T.Vector3()).y < -3 && this.orientation === 2) ||
+                (this.ring2.getWorldPosition(new T.Vector3()).x < -53 && this.orientation === 1) || 
+                (this.ring2.getWorldPosition(new T.Vector3()).x > 53 && this.orientation === 3)) {
                 this.hit2 = false;
                 this.ring2.visible = true;
             }

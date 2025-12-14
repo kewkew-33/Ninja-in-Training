@@ -1,4 +1,5 @@
 import * as T from 'three';
+import * as TARGETS from './targets.js';
 
 export function createEnvironment(scene) {
     const ambientLight = new T.AmbientLight(0xffffff, 0.5);
@@ -43,5 +44,22 @@ export function createEnvironment(scene) {
     ceiling.rotation.x = Math.PI / 2;
     ceiling.position.y = 50;
     scene.add(ceiling);
+
+}
+
+export function createTargets() {
+
+    let targets = [];
+
+    let target1 = new TARGETS.spin100(0, 0, -40, 2);
+    targets.push(target1);
+
+    let target2 = new TARGETS.spin100(-50, 20, -20, 1);
+    targets.push(target2);
+
+    let target3 = new TARGETS.spin100(50, 10, -15, 3);
+    targets.push(target3);
+
+    return targets;
 
 }
