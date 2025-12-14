@@ -46,8 +46,12 @@ function animate() {
   time = 60 - Math.floor((Date.now() - startTime) / 1000);
 
   if (time <= 0) {
-      //alert("Game Over! Your final score is: " + player.score);
-      //window.location.reload();
+
+    if ( localStorage.getItem("ninjaHighScore") === null || player.score > localStorage.getItem("ninjaHighScore")) {
+        localStorage.setItem("ninjaHighScore", player.score);
+    }
+
+      window.location.href = "index.html";
   }
 
   document.getElementById("timer").innerText = "Time: " + time;

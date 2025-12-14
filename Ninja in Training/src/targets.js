@@ -488,6 +488,8 @@ export class Capsule1000 {
 
         this.value = 1000;
 
+        this.group.position.set(110, 0, 0); // Start off-screen
+
         this.collected = false;
 
         this.pauseTime = Date.now();
@@ -543,12 +545,12 @@ export class Capsule1000 {
                     this.pauseTime = Date.now();
 
                 }
-                
             }
         }
         else if(this.stage === 2) {
 
             this.t += 0.025;
+            this.group.rotation.x -= 0.1;
 
             this.group.position.y = -1.08 * (this.t - 5) * (this.t - 5) + 30;
 
