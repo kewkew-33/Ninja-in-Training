@@ -1,5 +1,6 @@
 import * as T from 'three';
 import { addScore } from './main.js';
+import { hitMark } from './main.js';
 
 export class spin100 {
     constructor(x=0, y=0, z=0, orientation) {
@@ -85,6 +86,7 @@ export class spin100 {
     hit(t) {
 
         addScore(this.value);
+        hitMark();
 
         if (t === 1) {
             this.ring1.visible = false;
@@ -155,6 +157,8 @@ export class Cube500 {
 
         if( !this.collected) {
 
+            hitMark();
+
             addScore(this.value);
             this.collected = true;
             this.group.visible = false;
@@ -169,7 +173,7 @@ export class Cube500 {
 
         if (this.group.position.y < -5) {
             this.group.position.y = 54;
-            this.hit = false;
+            this.collected = false;
             this.group.visible = true;
         }
     }

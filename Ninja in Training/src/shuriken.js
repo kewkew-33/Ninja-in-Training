@@ -62,6 +62,7 @@ export class Shuriken {
 
                 target.hit(target.checkIntersection(this));
                 this.scene.remove(this.group);
+                break;
             }
         }
     }

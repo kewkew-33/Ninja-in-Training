@@ -1,7 +1,6 @@
 import './style.css';
 import * as THREE from 'three';
 import { createEnvironment, createTargets } from './envionment';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
 
@@ -22,6 +21,11 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
+
+document.getElementById("hit-left").style.visibility = "hidden";
+document.getElementById("hit-right").style.visibility = "hidden";
+document.getElementById("hit-up").style.visibility = "hidden";
+document.getElementById("hit-down").style.visibility = "hidden";
 
 createEnvironment(scene);
 
@@ -71,4 +75,20 @@ window.addEventListener( 'resize', () => {
 
 export function addScore(points) {
     player.score += points;
+}
+
+export function hitMark() {
+  
+  document.getElementById("hit-left").style.visibility = "visible";
+  document.getElementById("hit-right").style.visibility = "visible";
+  document.getElementById("hit-up").style.visibility = "visible";
+  document.getElementById("hit-down").style.visibility = "visible";
+
+  setTimeout(() => {
+    document.getElementById("hit-left").style.visibility = "hidden";
+    document.getElementById("hit-right").style.visibility = "hidden";
+    document.getElementById("hit-up").style.visibility = "hidden";
+    document.getElementById("hit-down").style.visibility = "hidden";
+  }, 100);
+
 }
