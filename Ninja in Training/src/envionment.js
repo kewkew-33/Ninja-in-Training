@@ -84,6 +84,18 @@ export function createTargets() {
     let target11 = new TARGETS.TorusKnot15000();
     targets.push(target11);
 
+    let target12 = new TARGETS.Capsule1000();
+    targets.push(target12);
+
+    let target13 = new TARGETS.Capsule1000();
+    targets.push(target13);
+
+    let target14 = new TARGETS.Capsule1000();
+    targets.push(target14);
+
+    let target15 = new TARGETS.Capsule1000();
+    targets.push(target15);
+
     return targets;
 
 }

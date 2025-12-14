@@ -412,10 +412,6 @@ export class TorusKnot15000 {
 
     update() {
 
-        console.log("x: " + this.group.position.x + " y: " + this.group.position.y + " z: " + this.group.position.z);
-
-        //this.group.rotation.y += 0.01;
-
         if(this.stage === 1) {
 
             if (this.visibleTime != null) {
@@ -472,6 +468,95 @@ export class TorusKnot15000 {
 
                 this.stage = 1;
                 this.pauseTime = Date.now();
+
+            }
+        }
+    }
+}
+
+export class Capsule1000 {
+
+    constructor() {
+
+        this.group = new T.Group();
+
+        const geometry = new T.CapsuleGeometry(1, 2, 4, 8);
+        const material = new T.MeshBasicMaterial({ color: 'orange' });
+        const capsule = new T.Mesh(geometry, material);
+
+        this.group.add(capsule);
+
+        this.value = 1000;
+
+        this.collected = false;
+
+        this.pauseTime = Date.now();
+        this.stage = 1;
+        this.t = 0;
+
+    }
+
+    checkIntersection(shuriken) {
+
+        let capsulePos = this.group.getWorldPosition(new T.Vector3());
+
+        let distance = shuriken.group.position.distanceTo(capsulePos);
+
+        if (distance < 2) {return 1;}
+
+        return 0;
+
+    }
+
+    hit( val ) {
+        if( !this.collected) {
+            hitMark();
+            addScore(this.value);
+            this.collected = true;
+            this.group.visible = false;
+        }
+    }
+
+    update() {
+
+        if(this.stage === 1) {
+
+            if(Date.now() - this.pauseTime > 2000) {
+             
+                if(Math.random() < 0.3) {
+
+                    let x = Math.random() * 100 - 50;
+                    let z = Math.random() * 50 - 50;
+                    let y = -2;
+
+                    this.group.position.set(x, y, z);
+
+                    this.collected = false;
+                    this.group.visible = true;
+
+                    this.stage = 2;
+
+                }
+
+                else {
+
+                    this.pauseTime = Date.now();
+
+                }
+                
+            }
+        }
+        else if(this.stage === 2) {
+
+            this.t += 0.025;
+
+            this.group.position.y = -1.08 * (this.t - 5) * (this.t - 5) + 30;
+
+            if(this.group.position.y < -2) {
+
+                this.stage = 1;
+                this.pauseTime = Date.now();
+                this.t = 0;
 
             }
         }
