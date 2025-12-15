@@ -1,9 +1,9 @@
 import './style.css';
-import * as THREE from 'three';
+import * as THREE from '../node_modules/three';
 import { createEnvironment, createTargets } from './envionment';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
-import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+import { FBXLoader } from '../node_modules/three/addons/loaders/FBXLoader.js';
 
 // Tutorial followed for basic setup: https://www.youtube.com/watch?v=Sv8z__KiR5Y
 
