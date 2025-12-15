@@ -1,4 +1,4 @@
-import * as T from 'three';
+import * as T from '../node_modules/three';
 import { Shuriken } from './shuriken.js';
 
 export class Player {
