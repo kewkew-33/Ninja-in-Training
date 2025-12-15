@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import * as T from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { addScore } from './main.js';
 import { hitMark } from './main.js';
 import { FBXLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
