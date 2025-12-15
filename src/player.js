@@ -1,4 +1,4 @@
-import * as T from '../node_modules/three';
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { Shuriken } from './shuriken.js';
 
 export class Player {
