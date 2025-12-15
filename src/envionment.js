@@ -1,6 +1,5 @@
-import * as T from 'three';
+import * as T from '../node_modules/three';
 import * as TARGETS from './targets.js';
-import { texture, textureLoad } from 'three/tsl';
 
 export function createEnvironment(scene) {
     const ambientLight = new T.AmbientLight(0xffffff, 0.5);
