@@ -21,7 +21,7 @@ export class spin200 {
 
             let loader = new GLTFLoader();
 
-            loader.loadAsync('../public/models/Tomato.glb').then((gltf) => {
+            loader.loadAsync('https://kewkew-33.github.io/Ninja-in-Training/public/models/Tomato.glb').then((gltf) => {
 
                 this.group.remove(ring1);
                 this.group.remove(ring2);
@@ -164,7 +164,7 @@ export class Cube500 {
 
             let loader = new GLTFLoader();
 
-            loader.loadAsync('../public/models/Pumpkin.glb').then((gltf) => {
+            loader.loadAsync('https://kewkew-33.github.io/Ninja-in-Training/public/models/Pumpkin.glb').then((gltf) => {
 
                 this.group.remove(cube);
                 cube = gltf.scene;
@@ -238,7 +238,7 @@ export class Dodec4000 {
 
             let loader = new GLTFLoader();
 
-            loader.loadAsync('../public/models/Beet.glb').then((gltf) => {
+            loader.loadAsync('https://kewkew-33.github.io/Ninja-in-Training/public/models/Beet.glb').then((gltf) => {
 
                 this.group.remove(tetra);
                 let beet = gltf.scene;
@@ -348,7 +348,7 @@ export class Sphere800 {
 
             let loader = new GLTFLoader();
 
-            loader.loadAsync('../public/models/Cauliflower.glb').then((gltf) => {
+            loader.loadAsync('https://kewkew-33.github.io/Ninja-in-Training/public/models/Cauliflower.glb').then((gltf) => {
 
                 this.group.remove(sphere);
                 let cauliflower = gltf.scene;
@@ -455,7 +455,7 @@ export class TorusKnot15000 {
 
             let loader = new FBXLoader();
 
-            loader.loadAsync('../public/models/not mushroom.fbx').then((object) => {
+            loader.loadAsync('https://kewkew-33.github.io/Ninja-in-Training/public/models/not mushroom.fbx').then((object) => {
 
                 this.group.remove(torusKnot);
                 object.scale.set(0.05, 0.05, 0.05);
@@ -580,7 +580,7 @@ export class Capsule1000 {
 
             let loader = new GLTFLoader();
 
-            loader.loadAsync('../public/models/Corn.glb').then((gltf) => {
+            loader.loadAsync('https://kewkew-33.github.io/Ninja-in-Training/public/models/Corn.glb').then((gltf) => {
 
                 this.group.remove(capsule);
                 let corn = gltf.scene;
