@@ -13,7 +13,7 @@ export function createEnvironment(scene) {
     else {
 
         let textureLoader = new T.TextureLoader();
-        let groundTexture = textureLoader.load('../public/images/pexels-fwstudio-33348-129731.jpg');
+        let groundTexture = textureLoader.load('https://kewkew-33.github.io/Ninja-in-Training/public/public/images/pexels-fwstudio-33348-129731.jpg');
 
         groundTexture.wrapS = T.RepeatWrapping;
         groundTexture.wrapT = T.RepeatWrapping;
@@ -70,8 +70,7 @@ export function createEnvironment(scene) {
     } else {
         
         let textureLoader = new T.TextureLoader();
-        let dividerTexture = textureLoader.load('../public/images/pexels-fwstudio-33348-129731.jpg');
-        //dividerTexture.rotation = Math.PI / 2;
+        let dividerTexture = textureLoader.load('https://kewkew-33.github.io/Ninja-in-Training/public/images/pexels-fwstudio-33348-129731.jpg');
         dividerTexture.wrapS = T.RepeatWrapping;
         dividerTexture.wrapT = T.RepeatWrapping;
         dividerTexture.repeat.set(10, 0.2);
@@ -89,7 +88,7 @@ export function createEnvironment(scene) {
         ceilingMat = new T.MeshStandardMaterial({ color: 'rgba(70, 70, 70, 1)' });
     } else {
         let textureLoader = new T.TextureLoader();
-        let ceilingTexture = textureLoader.load('../public/images/ceiling.jpg');
+        let ceilingTexture = textureLoader.load('https://kewkew-33.github.io/Ninja-in-Training/public/images/ceiling.jpg');
         ceilingMat = new T.MeshStandardMaterial({ map: ceilingTexture });
     }
     let ceiling = new T.Mesh(ceilingGeom, ceilingMat);
