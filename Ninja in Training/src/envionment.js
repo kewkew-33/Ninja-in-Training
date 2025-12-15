@@ -1,19 +1,50 @@
 import * as T from 'three';
 import * as TARGETS from './targets.js';
+import { texture, textureLoad } from 'three/tsl';
 
 export function createEnvironment(scene) {
     const ambientLight = new T.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
     let groundGeometry = new T.PlaneGeometry(100, 100);
-    let groundMaterial = new T.MeshStandardMaterial({ color: 'rgb(196, 164, 132)' });
+    let groundMaterial;
+    if(localStorage.getItem("ninjaPrototypeMode") === "true") {
+        groundMaterial = new T.MeshStandardMaterial({ color: 'rgb(100, 100, 100)' });
+    }
+    else {
+
+        let textureLoader = new T.TextureLoader();
+        let groundTexture = textureLoader.load('../public/images/pexels-fwstudio-33348-129731.jpg');
+
+        groundTexture.wrapS = T.RepeatWrapping;
+        groundTexture.wrapT = T.RepeatWrapping;
+        groundTexture.repeat.set(10, 10);
+
+        groundMaterial = new T.MeshStandardMaterial({ map: groundTexture });
+
+    }
     let ground = new T.Mesh(groundGeometry, groundMaterial);
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = 0;
     scene.add(ground);
 
     let wallPlane = new T.PlaneGeometry(100, 50);
-    let wallMaterial = new T.MeshStandardMaterial({ color: 'rgb(150, 111, 51)' });
+
+    let wallMaterial;
+
+    if(localStorage.getItem("ninjaPrototypeMode") === "true") {
+        wallMaterial = new T.MeshStandardMaterial({ color: 'rgb(150, 111, 51)' });
+    } else {
+        let textureLoader = new T.TextureLoader();
+        let wallTexture = textureLoader.load('../public/images/wall.jpg');
+        
+        wallTexture.wrapS = T.RepeatWrapping;
+        wallTexture.wrapT = T.RepeatWrapping;
+        wallTexture.repeat.set(2, 2);
+        
+        wallMaterial = new T.MeshStandardMaterial({ map: wallTexture });
+    }
+
     let wall1 = new T.Mesh(wallPlane, wallMaterial);
     let wall2 = new T.Mesh(wallPlane, wallMaterial);
     let wall3 = new T.Mesh(wallPlane, wallMaterial);
@@ -33,13 +64,35 @@ export function createEnvironment(scene) {
     scene.add(wall4);
 
     let dividerGeom = new T.BoxGeometry(100, 2, 2);
-    let dividerMat = new T.MeshStandardMaterial({ color: 'rgba(50, 50, 50, 1)' });
+
+    let dividerMat;
+    if (localStorage.getItem("ninjaPrototypeMode") === "true") {
+        dividerMat = new T.MeshStandardMaterial({ color: 'rgba(50, 50, 50, 1)' });
+    } else {
+        
+        let textureLoader = new T.TextureLoader();
+        let dividerTexture = textureLoader.load('../public/images/pexels-fwstudio-33348-129731.jpg');
+        //dividerTexture.rotation = Math.PI / 2;
+        dividerTexture.wrapS = T.RepeatWrapping;
+        dividerTexture.wrapT = T.RepeatWrapping;
+        dividerTexture.repeat.set(10, 0.2);
+        dividerMat = new T.MeshStandardMaterial({ map: dividerTexture });
+    }
+        
     let divider = new T.Mesh(dividerGeom, dividerMat);
     divider.position.y = 1;
     scene.add(divider);
 
     let ceilingGeom = new T.PlaneGeometry(100, 100);
-    let ceilingMat = new T.MeshStandardMaterial({ color: 'rgba(70, 70, 70, 1)' });
+
+    let ceilingMat;
+    if (localStorage.getItem("ninjaPrototypeMode") === "true") {
+        ceilingMat = new T.MeshStandardMaterial({ color: 'rgba(70, 70, 70, 1)' });
+    } else {
+        let textureLoader = new T.TextureLoader();
+        let ceilingTexture = textureLoader.load('../public/images/ceiling.jpg');
+        ceilingMat = new T.MeshStandardMaterial({ map: ceilingTexture });
+    }
     let ceiling = new T.Mesh(ceilingGeom, ceilingMat);
     ceiling.rotation.x = Math.PI / 2;
     ceiling.position.y = 50;
