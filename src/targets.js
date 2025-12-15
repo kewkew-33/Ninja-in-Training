@@ -1,8 +1,8 @@
-import * as T from 'three';
+import * as T from '../node_module/three';
 import { addScore } from './main.js';
 import { hitMark } from './main.js';
-import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
-import { GLTFLoader } from 'three/examples/jsm/Addons.js';
+import { FBXLoader } from '../node_modules/three/addons/loaders/FBXLoader.js';
+import { GLTFLoader } from '../node_modules/three/examples/jsm/Addons.js';
 
 export class spin200 {
     constructor(x=0, y=0, z=0, orientation) {
