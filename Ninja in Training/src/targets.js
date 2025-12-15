@@ -1,6 +1,8 @@
 import * as T from 'three';
 import { addScore } from './main.js';
 import { hitMark } from './main.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 
 export class spin200 {
     constructor(x=0, y=0, z=0, orientation) {
@@ -11,8 +13,34 @@ export class spin200 {
         geometry.rotateX(Math.PI / 2);
         const material = new T.MeshBasicMaterial({ color: 'red' });
 
-        const ring1 = new T.Mesh(geometry, material);
-        const ring2 = new T.Mesh(geometry, material);
+        let ring1 = new T.Mesh(geometry, material);
+        let ring2 = new T.Mesh(geometry, material);
+
+        if (localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new GLTFLoader();
+
+            loader.loadAsync('../public/models/Tomato.glb').then((gltf) => {
+
+                this.group.remove(ring1);
+                this.group.remove(ring2);
+
+                ring1 = gltf.scene;
+                ring1.scale.set(0.5, 0.5, 0.5);
+                ring1.rotation.x = Math.PI / 2;
+                ring1.position.set(0, 5, -1);
+                this.ring1 = ring1;
+                this.group.add(ring1);
+
+                ring2 = gltf.scene.clone();
+                ring2.scale.set(0.5, 0.5, 0.5);
+                ring2.rotation.x = Math.PI / 2;
+                ring2.position.set(0, -5, -1);
+                this.group.add(ring2);
+                this.ring2 = ring2;
+
+            });
+        }
 
         ring1.position.set(0, 5, 0);
         ring2.position.set(0, -5, 0);
@@ -128,7 +156,23 @@ export class Cube500 {
 
         const geometry = new T.BoxGeometry(4,4,4);
         const material = new T.MeshBasicMaterial({ color: 'blue' });
-        const cube = new T.Mesh(geometry, material);
+        let cube;
+        cube = new T.Mesh(geometry, material);
+
+        if (localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new GLTFLoader();
+
+            loader.loadAsync('../public/models/Pumpkin.glb').then((gltf) => {
+
+                this.group.remove(cube);
+                cube = gltf.scene;
+                cube.scale.set(3, 3, 3);
+                cube.position.y += 0.5;
+                this.group.add(cube);
+
+            });
+        }
 
         this.group.add(cube);
         this.group.position.set(x, y, z);
@@ -188,6 +232,20 @@ export class Dodec4000 {
         const geometry = new T.DodecahedronGeometry(1);
         const material = new T.MeshBasicMaterial({ color: 'green' });
         const tetra = new T.Mesh(geometry, material);
+
+        if (localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new GLTFLoader();
+
+            loader.loadAsync('../public/models/Beet.glb').then((gltf) => {
+
+                this.group.remove(tetra);
+                let beet = gltf.scene;
+                this.group.add(beet);
+
+            });
+
+        }
 
         this.group.add(tetra);
 
@@ -253,7 +311,7 @@ export class Dodec4000 {
 
             this.group.position.y -= 0.1;
 
-            if(this.group.position.y < -1.5) {
+            if(this.group.position.y < -2.5) {
 
                 this.stage = 1;
                 this.previousStage = 2;
@@ -284,6 +342,23 @@ export class Sphere800 {
         const geometry = new T.SphereGeometry(2, 32, 32);
         const material = new T.MeshBasicMaterial({ color: 'yellow' });
         const sphere = new T.Mesh(geometry, material);
+
+        if (localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new GLTFLoader();
+
+            loader.loadAsync('../public/models/Cauliflower.glb').then((gltf) => {
+
+                this.group.remove(sphere);
+                let cauliflower = gltf.scene;
+                cauliflower.scale.set(12, 12, 12);
+                cauliflower.position.z -= 1.5;
+                cauliflower.rotation.x = Math.PI / 2;
+                this.group.add(cauliflower);
+
+            });
+
+        }
 
         this.group.add(sphere);
 
@@ -374,6 +449,22 @@ export class TorusKnot15000 {
         const geometry = new T.TorusKnotGeometry(1, 0.3, 100, 16);
         const material = new T.MeshBasicMaterial({ color: 'purple' });
         const torusKnot = new T.Mesh(geometry, material);
+
+        if (localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new FBXLoader();
+
+            loader.loadAsync('../public/models/not mushroom.fbx').then((object) => {
+
+                this.group.remove(torusKnot);
+                object.scale.set(0.05, 0.05, 0.05);
+                object.rotation.x = Math.PI;
+                object.position.y += 1.5;
+                this.group.add(object);
+
+            });
+        }
+
         this.group.add(torusKnot);
 
         this.value = 15000;
@@ -426,7 +517,7 @@ export class TorusKnot15000 {
 
             else if(Date.now() - this.pauseTime > 10000) {
 
-                if(Math.random() < 0.25) {
+                if(Math.random() < 0.95) {
 
                     let x = Math.random() * 100 - 50;
                     let z = Math.random() * 50 - 50;
@@ -483,6 +574,22 @@ export class Capsule1000 {
         const geometry = new T.CapsuleGeometry(1, 2, 4, 8);
         const material = new T.MeshBasicMaterial({ color: 'orange' });
         const capsule = new T.Mesh(geometry, material);
+
+        if (localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new GLTFLoader();
+
+            loader.loadAsync('../public/models/Corn.glb').then((gltf) => {
+
+                this.group.remove(capsule);
+                let corn = gltf.scene;
+                corn.scale.set(0.125, 0.125, 0.125);
+                corn.position.y -= 3;
+                this.group.add(corn);
+
+            });
+
+        }
 
         this.group.add(capsule);
 
@@ -554,7 +661,7 @@ export class Capsule1000 {
 
             this.group.position.y = -1.08 * (this.t - 5) * (this.t - 5) + 30;
 
-            if(this.group.position.y < -2) {
+            if(this.group.position.y < -3) {
 
                 this.stage = 1;
                 this.pauseTime = Date.now();
