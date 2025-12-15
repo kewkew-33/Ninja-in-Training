@@ -4,7 +4,7 @@ import { Shuriken } from './shuriken.js';
 export class Player {
     constructor(x=0, z = 10, scene, model=null ) {
 
-        this.group = new T.Group();
+        this.group = new THREE.Group();
         this.score = 0;
 
         let playerCam = new T.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 150);
