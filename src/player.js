@@ -1,10 +1,10 @@
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import * as T from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { Shuriken } from './shuriken.js';
 
 export class Player {
     constructor(x=0, z = 10, scene, model=null ) {
 
-        this.group = new THREE.Group();
+        this.group = new T.Group();
         this.score = 0;
 
         let playerCam = new T.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 150);
