@@ -3,11 +3,11 @@ import * as THREE from 'three';
 import { createEnvironment, createTargets } from './envionment';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 // Tutorial followed for basic setup: https://www.youtube.com/watch?v=Sv8z__KiR5Y
 
 const scene = new THREE.Scene();
-//const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 let player = new Player(0, 10, scene);
 const camera = player.playerCam;
 scene.add(player.group);

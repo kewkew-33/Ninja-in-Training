@@ -2,7 +2,7 @@ import * as T from 'three';
 import { Shuriken } from './shuriken.js';
 
 export class Player {
-    constructor(x=0, z = 10, scene ) {
+    constructor(x=0, z = 10, scene, model=null ) {
 
         this.group = new T.Group();
         this.score = 0;
@@ -13,6 +13,8 @@ export class Player {
         this.group.add(this.playerCam);
 
         this.group.position.set(x, 0, z);
+
+        this.model = model;
 
         this.shuriken = new Shuriken(0.2, 4.7, -0.5);
         this.group.add(this.shuriken.group);
@@ -44,6 +46,13 @@ export class Player {
             this.playerCam.rotation.x -= e.movementY * 0.005;
             this.group.rotation.y -= e.movementX * 0.005;
             this.playerCam.rotation.order = "YXZ";
+
+            if (this.playerCam.rotation.x < -Math.PI / 2) {
+                this.playerCam.rotation.x = -Math.PI / 2;
+            }
+            if (this.playerCam.rotation.x > Math.PI / 2) {
+                this.playerCam.rotation.x = Math.PI / 2;
+            }
         });
 
         addEventListener('click', () => {

@@ -9,10 +9,26 @@ export class Shuriken {
 
         let simpleProjectileGeom = new T.CylinderGeometry(0.1, 0.1, 0.05, 6);
         let simpleProjectileMat = new T.MeshStandardMaterial({ color: 'silver' });
-        this.simpleProjectile = new T.Mesh(simpleProjectileGeom, simpleProjectileMat);
-        this.simpleProjectile.rotation.x = Math.PI / 2;
 
-        this.group.add(this.simpleProjectile);
+        this.projectile = new T.Mesh(simpleProjectileGeom, simpleProjectileMat);
+
+        if(localStorage.getItem("ninjaPrototypeMode") === "false") {
+
+            let loader = new FBXLoader();
+
+            loader.loadAsync('../public/models/Shuriken_1.fbx').then((object) => {
+
+                this.group.remove(this.projectile);
+                object.scale.set(0.1, 0.1, 0.1);
+                this.projectile = object;
+                this.projectile.rotation.y = Math.PI / 2;
+                this.group.add(this.projectile);
+            });
+        }
+
+        this.projectile.rotation.z = Math.PI / 2;
+
+        this.group.add(this.projectile);
 
         this.group.position.set(x, y, z);
 
@@ -52,7 +68,7 @@ export class Shuriken {
 
             this.group.position.add(this.velocity.clone().multiplyScalar(delta / 300));
 
-            this.simpleProjectile.rotation.z += 0.5;
+            this.projectile.rotation.z += 0.5;
 
             this.lastTime = Date.now();
         }
