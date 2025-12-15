@@ -13,7 +13,7 @@ export function createEnvironment(scene) {
     else {
 
         let textureLoader = new T.TextureLoader();
-        let groundTexture = textureLoader.load('https://kewkew-33.github.io/Ninja-in-Training/public/public/images/pexels-fwstudio-33348-129731.jpg');
+        let groundTexture = textureLoader.load('https://kewkew-33.github.io/Ninja-in-Training/public/images/pexels-fwstudio-33348-129731.jpg');
 
         groundTexture.wrapS = T.RepeatWrapping;
         groundTexture.wrapT = T.RepeatWrapping;
