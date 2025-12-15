@@ -16,7 +16,7 @@ export class Shuriken {
 
             let loader = new FBXLoader();
 
-            loader.loadAsync('../public/models/Shuriken_1.fbx').then((object) => {
+            loader.loadAsync('https://raw.githubusercontent.com/kewkew-33/Ninja-in-Training/Moved/public/models/Shuriken_1.fbx').then((object) => {
 
                 this.group.remove(this.projectile);
                 object.scale.set(0.1, 0.1, 0.1);
