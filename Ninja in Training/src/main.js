@@ -29,11 +29,18 @@ document.getElementById("hit-down").style.visibility = "hidden";
 
 createEnvironment(scene);
 
-renderer.domElement.onclick = () => {
+let startButton = document.getElementById("start-game");
+let started = false;
 
+startButton.addEventListener("mouseup", () => {
+
+  started = true;
+  startButton.style.display = "none";
   document.body.requestPointerLock();
 
-}
+  player.rotation.set(0, 0, 0);
+
+});
 
 for (let target of targets) {
     scene.add(target.group);
@@ -43,6 +50,8 @@ player.setTargets(targets);
 
 function animate() {
 
+  if (!started) return;
+
   time = 60 - Math.floor((Date.now() - startTime) / 1000);
 
   if (time <= 0) {
@@ -50,6 +59,8 @@ function animate() {
     if ( localStorage.getItem("ninjaHighScore") === null || player.score > localStorage.getItem("ninjaHighScore")) {
         localStorage.setItem("ninjaHighScore", player.score);
     }
+
+      alert("Time's up, thanks for playing! Your score: " + player.score);
 
       renderer.setAnimationLoop( null );
       window.location.href = "index.html";

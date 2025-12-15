@@ -1,12 +1,17 @@
 body {
   margin: 0;
+  background-color: burlywood;
+  text-align: center;
+}
+* {
+  font-family: Copperplate, fantasy;
 }
 #score-counter {
   position: absolute;
   top: 2%;
   left: 50%;
   color: rgb(255, 0, 0);
-  font-family: Arial, sans-serif;
+  font-family: Copperplate, fantasy;
   font-size: 36px;
 }
 #timer {
@@ -14,6 +19,21 @@ body {
   top: 2%;
   left: 5%;
   color: rgb(255, 0, 0);
-  font-family: Arial, sans-serif;
+  font-family: Copperplate, fantasy;
   font-size: 36px;
+}
+ul {
+
+  list-style-position: inside;
+
+}
+#start-menu-body{
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: brown 10px solid;
+  border-radius: 25px;
+
 }

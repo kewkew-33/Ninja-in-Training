@@ -3,22 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ninja-in-training</title>
   </head>
-  <body>
+  <body id = "start-menu-body">
     <div id="start-menu">
   <div class="start-card">
     <h1 class="title">Ninja In Training</h1>
     <h2 id="high-score">High Score: 0</h2>
     <h3>Group ID: 3377</h2>
     <h3>Game by Aiden Mikulsky</h2>
-    <p>Click to fire a shuriken at the targets. Shurikens arc through the air and each target is worth a different amount of points.</p>
-    <div class="actions">
-      <button id="start-button">Start Training</button>
-      <input type="checkbox" id="prototype"/>
-      <label for="prototype">Prototype Mode (simple models)</label>
-    </div>
+    <p>Move with WASD and click to fire a shuriken at the targets. Shurikens arc through the air and each target is worth a different amount of points.</p>
     <p>Point Breakdown:
       <ul>
         <li>Tomato / Red: 200 points</li>
@@ -29,6 +25,11 @@
         <li>Mushroom / Purple: 15000 points</li>
       </ul>
     </p>
+    <div class="actions">
+      <input type="checkbox" id="prototype"/>
+      <label for="prototype">Prototype Mode (simple models)</label>
+      <button id="start-button">Start Training</button>
+    </div>
   </div>
   <script type="module" src="/index.js"></script>
   </body>
