@@ -1,8 +1,9 @@
-import * as T from '../node_module/three';
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { addScore } from './main.js';
 import { hitMark } from './main.js';
-import { FBXLoader } from '../node_modules/three/addons/loaders/FBXLoader.js';
-import { GLTFLoader } from '../node_modules/three/examples/jsm/Addons.js';
+import { FBXLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+
 
 export class spin200 {
     constructor(x=0, y=0, z=0, orientation) {
