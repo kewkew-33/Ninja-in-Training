@@ -1,6 +1,6 @@
-import * as T from '../node_modules/three';
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import * as TARGETS from './targets.js';
-import { FBXLoader } from '../node_modules/three/addons/loaders/FBXLoader.js';
+import { FBXLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
 
 export class Shuriken {
     constructor(x=0, y=0, z=0, targets = [], scene) {
