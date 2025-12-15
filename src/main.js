@@ -1,6 +1,6 @@
 import './style.css';
-import * as THREE from '../node_modules/three';
-import { createEnvironment, createTargets } from './envionment';
+import * as THREE from '../node_modules/three/build/three.module.js';
+import { createEnvironment, createTargets } from './envionment.js';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
 import { FBXLoader } from '../node_modules/three/addons/loaders/FBXLoader.js';
