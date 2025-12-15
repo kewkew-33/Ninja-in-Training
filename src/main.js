@@ -3,7 +3,6 @@ import * as THREE from '../node_modules/three/build/three.module.js';
 import { createEnvironment, createTargets } from './envionment.js';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
-import { FBXLoader } from '../node_modules/three/addons/loaders/FBXLoader.js';
 
 // Tutorial followed for basic setup: https://www.youtube.com/watch?v=Sv8z__KiR5Y
 
