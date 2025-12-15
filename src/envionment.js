@@ -35,7 +35,7 @@ export function createEnvironment(scene) {
         wallMaterial = new T.MeshStandardMaterial({ color: 'rgb(150, 111, 51)' });
     } else {
         let textureLoader = new T.TextureLoader();
-        let wallTexture = textureLoader.load('../public/images/wall.jpg');
+        let wallTexture = textureLoader.load('https://kewkew-33.github.io/Ninja-in-Training/public/images/wall.jpg');
         
         wallTexture.wrapS = T.RepeatWrapping;
         wallTexture.wrapT = T.RepeatWrapping;
