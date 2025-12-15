@@ -36,6 +36,7 @@ startButton.addEventListener("mouseup", () => {
 
   started = true;
   startButton.style.display = "none";
+  document.getElementById("hint").style.display = "none";
   document.body.requestPointerLock();
 
   player.rotation.set(0, 0, 0);
