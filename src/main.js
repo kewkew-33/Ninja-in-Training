@@ -1,5 +1,5 @@
 import './style.css';
-import * as THREE from '../node_modules/three/build/three.module.js';
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { createEnvironment, createTargets } from './envionment.js';
 import * as TARGETS from './targets.js';
 import { Player } from './player.js';
